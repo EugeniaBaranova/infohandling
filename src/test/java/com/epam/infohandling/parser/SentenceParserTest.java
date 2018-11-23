@@ -15,10 +15,12 @@ public class SentenceParserTest {
 
     private SentenceParser sentenceParser = new SentenceParser();
 
+    private Lexeme sentence = Lexeme.expression(SENTENCE);
+
     @Test
     public void shouldParseAndReturnComponentsWhenGivenSentence(){
         //when
-        Component result = sentenceParser.parse(SENTENCE);
+        Component result = sentenceParser.parse(sentence);
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(4));

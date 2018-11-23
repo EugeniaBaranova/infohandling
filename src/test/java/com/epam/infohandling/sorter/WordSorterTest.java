@@ -19,6 +19,8 @@ public class WordSorterTest {
     private Lexeme secondWord = Lexeme.word("then");
     private Lexeme thirdWord =  Lexeme.word("there");
     private Lexeme forthWord = Lexeme.word("here");
+    private Lexeme firstExpression = Lexeme.expression("good day");
+    private Lexeme secondExpression = Lexeme.expression("every day");
     private List<Lexeme> differentCharNumberLexemes = Arrays.asList(firstWord, secondWord, thirdWord);
     private List<Lexeme> notDifferentCharNumberLexemes = Arrays.asList(firstWord, secondWord, thirdWord, forthWord);
     private List<Lexeme> withoutAbsentSymbolLexemes = Arrays.asList(secondWord, thirdWord);
@@ -68,9 +70,23 @@ public class WordSorterTest {
         List<Lexeme> result = wordSorter.sort(withoutAbsentSymbolLexemes, ABSENT_SYMBOL);
         //then
         Assert.assertThat(result.size(), is(2));
-        Lexeme firstSortedLexeme = result.get(0);
-        Assert.assertThat(firstSortedLexeme, is(secondWord));
-        Lexeme secondSortedLexeme = result.get(1);
-        Assert.assertThat(secondSortedLexeme, is(thirdWord));
+        Lexeme firstLexeme = result.get(0);
+        Assert.assertThat(firstLexeme, is(secondWord));
+        Lexeme secondLexeme = result.get(1);
+        Assert.assertThat(secondLexeme, is(thirdWord));
+    }
+
+    @Test
+    public void shouldNotSortAndReturnTheSameListWhenGivenNotWords(){
+        //given
+        List<Lexeme> expressionLexemes = Arrays.asList(firstExpression, secondExpression);
+        //when
+        List<Lexeme> result = wordSorter.sort(expressionLexemes, SORTING_SYMBOL);
+        //then
+        Assert.assertThat(result.size(), is(2));
+        Lexeme firstLexeme = result.get(0);
+        Assert.assertThat(firstLexeme, is(firstExpression));
+        Lexeme secondLexeme = result.get(1);
+        Assert.assertThat(secondLexeme, is(secondExpression));
     }
 }

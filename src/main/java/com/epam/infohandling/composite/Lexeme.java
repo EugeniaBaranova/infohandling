@@ -24,6 +24,10 @@ public class Lexeme implements Component, Value {
         return value;
     }
 
+    public boolean isExpression() {
+        return expression;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

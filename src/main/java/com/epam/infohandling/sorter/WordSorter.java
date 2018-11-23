@@ -11,6 +11,12 @@ public class WordSorter {
 
     public List<Lexeme> sort(List<Lexeme> lexemes, char sortingSymbol) {
         if (lexemes != null) {
+
+            if(lexemes.stream()
+                    .allMatch(Lexeme::isExpression)){
+                return lexemes;
+            }
+
             List<String> lexemeValues = new ArrayList<>();
             lexemes.forEach(lexeme -> lexemeValues.add(lexeme.getValue()));
 

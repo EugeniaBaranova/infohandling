@@ -7,20 +7,26 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.mockito.Matchers.any;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ParagraphParserTest {
 
-    private static final String PARAGRAPH = "They will find nothing. That is why you may be calm. Just forget about this.";
+    private static final String PARAGRAPH = "They will find nothing... That is why you may be calm. Just forget about this.";
 
     private SentenceParser sentenceParser = mock(SentenceParser.class);
     private ParagraphParser paragraphParser = new ParagraphParser(sentenceParser);
 
+    private Lexeme paragraph = Lexeme.expression(PARAGRAPH);
+
     @Test
     public void shouldParseAndReturnComponentsWhenGivenParagraph(){
+        //given
+        when(sentenceParser.parse(any(Lexeme.class))).thenAnswer(i -> i.getArguments()[0]);
         //when
-        Component result = paragraphParser.parse(PARAGRAPH);
+        Component result = paragraphParser.parse(paragraph);
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(3));

@@ -1,6 +1,7 @@
 package com.epam.infohandling.parser;
 
 import com.epam.infohandling.composite.Component;
+import com.epam.infohandling.composite.Lexeme;
 
 public abstract class Parser {
 
@@ -17,6 +18,6 @@ public abstract class Parser {
         return successor;
     }
 
-    abstract public Component parse(String textString);
+    abstract public Component parse(Lexeme textLexeme);
 
 }

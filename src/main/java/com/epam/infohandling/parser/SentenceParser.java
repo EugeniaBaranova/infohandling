@@ -12,12 +12,15 @@ public class SentenceParser extends Parser {
     private static final String SPACE = " ";
 
     @Override
-    public Component parse(String textString) {
+    public Component parse(Lexeme textLexeme) {
         Component component = new Composite();
-        if(textString != null){
-            String[] split = textString.split(SPACE);
-            List<String> parts = Arrays.asList(split);
-            parts.stream().map(Lexeme::word).forEach(component::add);
+        if(textLexeme != null){
+            String textString = textLexeme.getValue();
+            String[] splittedSentence = textString.split(SPACE);
+            List<String> words = Arrays.asList(splittedSentence);
+            words.stream()
+                    .map(Lexeme::word)
+                    .forEach(component::add);
             return component;
         }
         return component;
