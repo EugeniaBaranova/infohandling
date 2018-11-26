@@ -5,6 +5,7 @@ import com.epam.infohandling.entity.composite.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TextParser extends Parser {
@@ -31,7 +32,7 @@ public class TextParser extends Parser {
             });
             return new Text(paragraphComponents);
         }
-        return new Text(new ArrayList<>(0));
+        return new Text(Collections.emptyList());
     }
 
     private void removeFirstParagraphSpaces(List<String> paragraphs) {

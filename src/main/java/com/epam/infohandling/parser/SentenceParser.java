@@ -6,6 +6,7 @@ import com.epam.infohandling.entity.composite.Word;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,6 @@ public class SentenceParser extends Parser {
                     .map(value -> (Component) new Word(value)).collect(Collectors.toList());
             return new Sentences(wordComponents);
         }
-        return new Sentences(new ArrayList<>(0));
+        return new Sentences(Collections.emptyList());
     }
 }

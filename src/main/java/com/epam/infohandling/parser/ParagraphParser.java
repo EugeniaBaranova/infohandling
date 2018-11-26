@@ -5,6 +5,7 @@ import com.epam.infohandling.entity.composite.Paragraph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ParagraphParser extends Parser {
@@ -30,6 +31,6 @@ public class ParagraphParser extends Parser {
                     });
             return new Paragraph(sentencesComponents);
         }
-        return new Paragraph(new ArrayList<>(0));
+        return new Paragraph(Collections.emptyList());
     }
 }

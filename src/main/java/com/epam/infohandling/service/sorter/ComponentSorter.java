@@ -4,6 +4,7 @@ import com.epam.infohandling.entity.composite.Component;
 import com.epam.infohandling.service.sorter.comparator.ComponentComparator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,6 @@ public class ComponentSorter {
                     .collect(Collectors.toList());
         }
         //TODO better!
-        return new ArrayList<>(0);
+        return Collections.emptyList();
     }
 }

@@ -3,6 +3,7 @@ package com.epam.infohandling.service;
 import com.epam.infohandling.entity.composite.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ComponentService {
@@ -27,7 +28,7 @@ public class ComponentService {
             fillComponentsAccordingBy(type, text, saveTo);
             return saveTo;
         }
-        return new ArrayList<>(0);
+        return Collections.emptyList();
     }
 
     private void fillComponentsAccordingBy(ComponentEnum type, Component parent, List<Component> saveTo) {
