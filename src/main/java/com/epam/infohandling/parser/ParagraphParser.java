@@ -1,8 +1,7 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.composite.Component;
-import com.epam.infohandling.composite.Composite;
-import com.epam.infohandling.composite.Lexeme;
+import com.epam.infohandling.entity.composite.Component;
+import com.epam.infohandling.entity.composite.Paragraph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,21 +17,19 @@ public class ParagraphParser extends Parser {
 
 
     @Override
-    public Component parse(Lexeme textLexeme) {
-        Component component = new Composite();
-        if (textLexeme != null && successor != null) {
-            String textString = textLexeme.getValue();
-            String[] splittedParagraph = textString.split(SEPARATING_REGEX);
+    public Component parse(String text) {
+        if (text != null && successor != null) {
+            String[] splittedParagraph = text.split(SEPARATING_REGEX);
             List<String> sentences = Arrays.asList(splittedParagraph);
 
-            sentences.stream()
-                    .map(Lexeme::expression)
-                    .forEach(lexeme -> {
-                        Component parsedSentence = successor.parse(lexeme);
-                        component.add(parsedSentence);
+            List<Component> sentencesComponents = new ArrayList<>();
+
+            sentences.forEach(sentence -> {
+                        Component parsedSentence = successor.parse(sentence);
+                        sentencesComponents.add(parsedSentence);
                     });
-            return component;
+            return new Paragraph(sentencesComponents);
         }
-        return component;
+        return new Paragraph(new ArrayList<>(0));
     }
 }

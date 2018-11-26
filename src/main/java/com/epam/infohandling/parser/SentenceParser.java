@@ -1,28 +1,28 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.composite.Component;
-import com.epam.infohandling.composite.Composite;
-import com.epam.infohandling.composite.Lexeme;
+import com.epam.infohandling.entity.composite.Component;
+import com.epam.infohandling.entity.composite.Sentences;
+import com.epam.infohandling.entity.composite.Word;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SentenceParser extends Parser {
 
     private static final String SPACE = " ";
 
     @Override
-    public Component parse(Lexeme textLexeme) {
-        Component component = new Composite();
-        if(textLexeme != null){
-            String textString = textLexeme.getValue();
-            String[] splittedSentence = textString.split(SPACE);
+    public Component parse(String text) {
+
+        if(text != null){
+            String[] splittedSentence = text.split(SPACE);
             List<String> words = Arrays.asList(splittedSentence);
-            words.stream()
-                    .map(Lexeme::word)
-                    .forEach(component::add);
-            return component;
+            List<Component> wordComponents = words.stream()
+                    .map(value -> (Component) new Word(value)).collect(Collectors.toList());
+            return new Sentences(wordComponents);
         }
-        return component;
+        return new Sentences(new ArrayList<>(0));
     }
 }
