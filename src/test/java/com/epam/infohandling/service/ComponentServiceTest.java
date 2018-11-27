@@ -12,8 +12,8 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class ComponentServiceTest {
 
-    public static final String FIRST_WORD = "Hello";
-    public static final String SECOND_WORD = "world.";
+    private static final String FIRST_WORD = "Hello";
+    private static final String SECOND_WORD = "world.";
 
     private ComponentService componentService = new ComponentService();
 

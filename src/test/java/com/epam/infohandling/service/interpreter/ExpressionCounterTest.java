@@ -11,11 +11,10 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class ExpressionCounterTest {
 
-    public static final String FIRST_WORD = "Hello";
-    public static final String EXPRESSION = "([2][23][3]*-)";
-    public static final String COUNTED_EXPRESSION = "43";
-    public static final String SECOND_WORD = "world.";
-
+    private static final String FIRST_WORD = "Hello";
+    private static final String EXPRESSION = "([2][23][3]*-)";
+    private static final String COUNTED_EXPRESSION = "43";
+    private static final String SECOND_WORD = "world.";
 
     private ExpressionCounter expressionCounter = new ExpressionCounter();
 

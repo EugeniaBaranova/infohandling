@@ -12,9 +12,9 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class StringCreatorTest {
 
-    public static final String FIRST_WORD = "Hello";
-    public static final String SECOND_WORD = "world.";
-    public static final String TEST_STRING = "    Hello world. Hello world.\n    Hello world. Hello world.\n";
+    private static final String FIRST_WORD = "Hello";
+    private static final String SECOND_WORD = "world.";
+    private static final String TEST_STRING = "    Hello world. Hello world.\n    Hello world. Hello world.\n";
 
     private ComponentService componentService = new ComponentService();
     private StringCreator stringCreator = new StringCreator(componentService);

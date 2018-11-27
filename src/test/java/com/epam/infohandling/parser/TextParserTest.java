@@ -46,6 +46,13 @@ public class TextParserTest {
         Assert.assertThat(children.get(3), is(FORTH_PARAGRAPH));
     }
 
-
+    @Test
+    public void shouldNotParseAndReturnComponentWithEmptyListWhenGivenNull(){
+        //when
+        Component result = textParser.parse(null);
+        //then
+        List<Component> children = result.getChildren();
+        Assert.assertTrue(children.isEmpty());
+    }
 
 }

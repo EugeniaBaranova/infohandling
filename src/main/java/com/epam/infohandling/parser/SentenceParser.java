@@ -21,7 +21,8 @@ public class SentenceParser extends Parser {
             String[] splittedSentence = text.split(SPACE);
             List<String> words = Arrays.asList(splittedSentence);
             List<Component> wordComponents = words.stream()
-                    .map(value -> (Component) new Word(value)).collect(Collectors.toList());
+                    .map(value -> (Component) new Word(value))
+                    .collect(Collectors.toList());
             return new Sentences(wordComponents);
         }
         return new Sentences(Collections.emptyList());
