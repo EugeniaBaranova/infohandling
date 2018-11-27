@@ -4,9 +4,10 @@ import com.epam.infohandling.entity.composite.Component;
 
 import java.util.Comparator;
 
-public class SentencesNumberComparator implements ComponentComparator{
+public class SentencesNumberParagraphComparator implements ComponentComparator{
     @Override
     public Comparator<Component> compare() {
-        return null;
+        return Comparator.comparingInt(paragraph -> paragraph.getChildren()
+                .size());
     }
 }

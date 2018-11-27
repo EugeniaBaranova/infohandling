@@ -1,6 +1,6 @@
 package com.epam.infohandling.service.sorter;
 
-import com.epam.infohandling.entity.composite.Component;
+import com.epam.infohandling.entity.composite.*;
 import com.epam.infohandling.service.sorter.comparator.ComponentComparator;
 
 import java.util.ArrayList;
@@ -16,17 +16,28 @@ public class ComponentSorter {
         this.componentComparator = componentComparator;
     }
 
-    public List<Component> sortBy(List<Component> component) {
+    public Component sortBy (Component component, ComponentEnum componentName) {
 
-        if (component!=null) {
+        if (component!=null && componentName!= null) {
 
-            return component
-                    .stream()
-                    .sorted(componentComparator
-                            .compare())
-                    .collect(Collectors.toList());
+            if(componentName.equals(component.getType())){
+                List<Component> children = component.getChildren();
+
+                List<Component> sortedChildren = children.stream()
+                        .sorted(componentComparator
+                                .compare())
+                        .collect(Collectors.toList());
+
+                switch(componentName){
+                    case SENTENCE:
+                        return new Sentences(sortedChildren);
+                    case PARAGRAPH:
+                        return new Paragraph(sortedChildren);
+                    case TEXT:
+                        return new Text(sortedChildren);
+                }
+            }
         }
-        //TODO better!
-        return Collections.emptyList();
+        return new Text(Collections.emptyList());
     }
 }

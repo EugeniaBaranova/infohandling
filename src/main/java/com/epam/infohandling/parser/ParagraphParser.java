@@ -9,6 +9,10 @@ public class ParagraphParser extends Parser {
 
     private static final String SEPARATING_REGEX = "(((\\.\\.\\.)|(\\.)|(\\?)|(!))(\\s?))";
     private static final String THREE_POINT_MARK = "...";
+    private static final char QUESTION_MARK = '?';
+    private static final char POINT_MARK = '.';
+    private static final char EXCLAMATION_MARK = '!';
+    private static final int INITIALIZATION_ZERO = 0;
 
     public ParagraphParser(Parser successor) {
         super(successor);
@@ -38,7 +42,7 @@ public class ParagraphParser extends Parser {
     private List<String> returnPunctuationMarks(List<String> punctuationMarks,
                                         List<String> sentencesAfterSplit) {
         List<String> sentences = new ArrayList<>();
-        int sentenceNumber = 0;
+        int sentenceNumber = INITIALIZATION_ZERO;
         for (String sentenceAfterSplit : sentencesAfterSplit) {
             String sentenceWithMark = sentenceAfterSplit + punctuationMarks.get(sentenceNumber);
             sentences.add(sentenceWithMark);
@@ -62,12 +66,12 @@ public class ParagraphParser extends Parser {
                                       Map<Integer, String> punctuationMarksOrder,
                                       List<Integer> ordinalNumberOfPoints) {
         char[] charArray = text.toCharArray();
-        int ordinalNumber = 0;
+        int ordinalNumber = INITIALIZATION_ZERO;
         for (Character character : charArray) {
-            if (character.equals('.') || character.equals('?') || character.equals('!')) {
+            if (character.equals(POINT_MARK) || character.equals(QUESTION_MARK) || character.equals(EXCLAMATION_MARK)) {
                 String s = String.valueOf(character);
                 punctuationMarksOrder.put(ordinalNumber, s);
-                if (character.equals('.')) {
+                if (character.equals(POINT_MARK)) {
                     ordinalNumberOfPoints.add(ordinalNumber);
                 }
             }
@@ -86,7 +90,7 @@ public class ParagraphParser extends Parser {
 
     private void findThreePointMark(List<Integer> ordinalNumberOfPoints,
                                     List<Integer> ordinalNumbersOfThreePoint) {
-        int previousNumber = 0;
+        int previousNumber = INITIALIZATION_ZERO;
         for (Integer number : ordinalNumberOfPoints) {
             if (number - previousNumber == 1) {
                 ordinalNumbersOfThreePoint.add(number);
