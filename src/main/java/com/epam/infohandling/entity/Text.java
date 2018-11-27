@@ -1,4 +1,4 @@
-package com.epam.infohandling.entity.composite;
+package com.epam.infohandling.entity;
 
 import java.util.List;
 

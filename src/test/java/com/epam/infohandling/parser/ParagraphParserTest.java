@@ -1,14 +1,11 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.entity.composite.Component;
-import com.epam.infohandling.entity.composite.Word;
+import com.epam.infohandling.entity.Component;
+import com.epam.infohandling.entity.Word;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.mockito.Matchers.any;
 import static org.hamcrest.CoreMatchers.is;

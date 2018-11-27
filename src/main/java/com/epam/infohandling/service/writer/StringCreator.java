@@ -1,8 +1,8 @@
 package com.epam.infohandling.service.writer;
 
-import com.epam.infohandling.entity.composite.Component;
-import com.epam.infohandling.entity.composite.ComponentEnum;
-import com.epam.infohandling.service.ComponentService;
+import com.epam.infohandling.entity.Component;
+import com.epam.infohandling.entity.ComponentEnum;
+import com.epam.infohandling.service.ComponentServiceImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,16 +13,16 @@ public class StringCreator {
     private static final String SPACES_BEFORE_PARAGRAPH = "   ";
     private static final String NEW_LINE_SIGN = "\n";
 
-    private ComponentService componentService;
+    private ComponentServiceImpl componentServiceImpl;
 
-    public StringCreator(ComponentService componentService) {
-        this.componentService = componentService;
+    public StringCreator(ComponentServiceImpl componentServiceImpl) {
+        this.componentServiceImpl = componentServiceImpl;
     }
 
     public Optional<String> createText(Component text) {
         if (text != null) {
             StringBuilder stringBuilder = new StringBuilder();
-            List<Component> paragraphs = componentService.getParagraph(text);
+            List<Component> paragraphs = componentServiceImpl.getParagraph(text);
             if (ComponentEnum.TEXT.equals(
                     text.getType())) {
                 for (Component paragraph : paragraphs) {
@@ -41,7 +41,7 @@ public class StringCreator {
 
     private void appendWords(StringBuilder stringBuilder, Component component) {
         if(stringBuilder != null && component != null){
-            List<Component> words = componentService.getWords(component);
+            List<Component> words = componentServiceImpl.getWords(component);
             words.forEach(word -> {
                 String wordValue = word.getValue();
                 stringBuilder.append(SPACE_BETWEEN_WORDS);

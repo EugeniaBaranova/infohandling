@@ -1,7 +1,7 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.entity.composite.Component;
-import com.epam.infohandling.entity.composite.Word;
+import com.epam.infohandling.entity.Component;
+import com.epam.infohandling.entity.Word;
 import org.junit.Assert;
 import org.junit.Test;
 

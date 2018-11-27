@@ -1,13 +1,13 @@
 package com.epam.infohandling.service.interpreter;
 
-import com.epam.infohandling.entity.composite.*;
-import com.epam.infohandling.service.ComponentService;
+import com.epam.infohandling.entity.*;
+import com.epam.infohandling.service.ComponentServiceImpl;
 
 import java.util.*;
 
-import static com.epam.infohandling.entity.composite.ComponentEnum.PARAGRAPH;
-import static com.epam.infohandling.entity.composite.ComponentEnum.SENTENCE;
-import static com.epam.infohandling.entity.composite.ComponentEnum.WORD;
+import static com.epam.infohandling.entity.ComponentEnum.PARAGRAPH;
+import static com.epam.infohandling.entity.ComponentEnum.SENTENCE;
+import static com.epam.infohandling.entity.ComponentEnum.WORD;
 
 public class ExpressionCounter {
 
@@ -20,7 +20,7 @@ public class ExpressionCounter {
     private AbstractExpression multiplicationExpression;
     private AbstractExpression divisionExpression;
 
-    private ComponentService componentService;
+    private ComponentServiceImpl componentServiceImpl;
 
     public ExpressionCounter() {
         this.context = new Context();
@@ -28,19 +28,19 @@ public class ExpressionCounter {
         this.minusExpression = new MinusTerminalExpression();
         this.multiplicationExpression = new MultiplicationTerminalExpression();
         this.divisionExpression = new DivisionTerminalExpression();
-        this.componentService = new ComponentService();
+        this.componentServiceImpl = new ComponentServiceImpl();
     }
 
     public Component countExpression(Component text) {
         if (text != null) {
 
-            List<Component> paragraphs = componentService.getParagraph(text);
+            List<Component> paragraphs = componentServiceImpl.getParagraph(text);
             for (Component paragraph : paragraphs) {
 
-                List<Component> sentences = componentService.getSentences(paragraph);
+                List<Component> sentences = componentServiceImpl.getSentences(paragraph);
                 for (Component sentence : sentences) {
 
-                    List<Component> words = componentService.getWords(sentence);
+                    List<Component> words = componentServiceImpl.getWords(sentence);
 
                     for (Component word : words) {
                         String wordValue = word.getValue();

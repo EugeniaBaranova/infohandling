@@ -1,6 +1,6 @@
 package com.epam.infohandling.service.interpreter;
 
-import com.epam.infohandling.entity.composite.*;
+import com.epam.infohandling.entity.*;
 import org.junit.Assert;
 import org.junit.Test;
 

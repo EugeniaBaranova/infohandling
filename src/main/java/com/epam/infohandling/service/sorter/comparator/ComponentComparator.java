@@ -1,6 +1,6 @@
 package com.epam.infohandling.service.sorter.comparator;
 
-import com.epam.infohandling.entity.composite.Component;
+import com.epam.infohandling.entity.Component;
 
 import java.util.Comparator;
 

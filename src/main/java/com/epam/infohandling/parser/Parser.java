@@ -1,6 +1,6 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.entity.composite.Component;
+import com.epam.infohandling.entity.Component;
 
 public abstract class Parser {
 

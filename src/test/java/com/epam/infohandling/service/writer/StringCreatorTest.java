@@ -1,7 +1,7 @@
 package com.epam.infohandling.service.writer;
 
-import com.epam.infohandling.entity.composite.*;
-import com.epam.infohandling.service.ComponentService;
+import com.epam.infohandling.entity.*;
+import com.epam.infohandling.service.ComponentServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,8 +16,8 @@ public class StringCreatorTest {
     private static final String SECOND_WORD = "world.";
     private static final String TEST_STRING = "    Hello world. Hello world.\n    Hello world. Hello world.\n";
 
-    private ComponentService componentService = new ComponentService();
-    private StringCreator stringCreator = new StringCreator(componentService);
+    private ComponentServiceImpl componentServiceImpl = new ComponentServiceImpl();
+    private StringCreator stringCreator = new StringCreator(componentServiceImpl);
 
     @Test
     public void shouldCreateTextWhenTextComponent(){

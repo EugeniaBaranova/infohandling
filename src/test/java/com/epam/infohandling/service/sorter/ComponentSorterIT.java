@@ -1,10 +1,11 @@
 package com.epam.infohandling.service.sorter;
 
-import com.epam.infohandling.entity.composite.*;
+import com.epam.infohandling.entity.*;
 import com.epam.infohandling.service.sorter.comparator.SentencesNumberParagraphComparator;
 import com.epam.infohandling.service.sorter.comparator.SymbolNumberDescWordComparator;
 import com.epam.infohandling.service.sorter.comparator.WordLengthComparator;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -22,29 +23,46 @@ public class ComponentSorterIT {
     private static final Component FORTH_WORD = new Word("here");
     private static final Component FIFTH_WORD = new Word("black");
     private static final Component SIXTH_WORD = new Word("bad");
+
     private static final Component DIFFERENT_CHAR_NUMBER_SENTENCE =
             new Sentences(Arrays.asList(FIRST_WORD, SECOND_WORD, THIRD_WORD));
+
     private static final Component NOT_DIFFERENT_CHAR_NUMBER_SENTENCE =
             new Sentences(Arrays.asList(FIRST_WORD, SECOND_WORD, THIRD_WORD, FORTH_WORD));
+
     private static final Component WITHOUT_SORTING_SYMBOL_SENTENCE =
             new Sentences(Arrays.asList(FIFTH_WORD, SIXTH_WORD));
+
     private static final Component FIRST_PARAGRAPH =
             new Paragraph(Arrays.asList(DIFFERENT_CHAR_NUMBER_SENTENCE,
                     DIFFERENT_CHAR_NUMBER_SENTENCE, DIFFERENT_CHAR_NUMBER_SENTENCE));
+
     private static final Component SECOND_PARAGRAPH =
             new Paragraph(Arrays.asList(WITHOUT_SORTING_SYMBOL_SENTENCE, WITHOUT_SORTING_SYMBOL_SENTENCE,
                     WITHOUT_SORTING_SYMBOL_SENTENCE, WITHOUT_SORTING_SYMBOL_SENTENCE));
+
     private static final Component THIRD_PARAGRAPH =
             new Paragraph(Arrays.asList(NOT_DIFFERENT_CHAR_NUMBER_SENTENCE, NOT_DIFFERENT_CHAR_NUMBER_SENTENCE));
+
     private static final Component TEXT =
             new Text(Arrays.asList(FIRST_PARAGRAPH, SECOND_PARAGRAPH, THIRD_PARAGRAPH));
 
+
+    private static Sorter<Component> sorter;
+
+
+    @BeforeClass
+    public static void setUpClass(){
+        sorter = new ComponentSorter();
+    }
+
+
     @Test
     public void shouldSortWordsBySymbolNumberDescWhenNumberIsDifferent() {
-        //given
-        ComponentSorter componentSorter = new ComponentSorter(new SymbolNumberDescWordComparator(SORTING_SYMBOL));
+
         //when
-        Component result = componentSorter.sortBy(DIFFERENT_CHAR_NUMBER_SENTENCE, ComponentEnum.SENTENCE);
+        Component result = sorter.sortBy(DIFFERENT_CHAR_NUMBER_SENTENCE,
+                new SymbolNumberDescWordComparator(SORTING_SYMBOL));
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(3));
@@ -55,10 +73,10 @@ public class ComponentSorterIT {
 
     @Test
     public void shouldSortWordsBySymbolNumberDescWhenNumberIsNotDifferent() {
-        //given
-        ComponentSorter componentSorter = new ComponentSorter(new SymbolNumberDescWordComparator(SORTING_SYMBOL));
+
         //when
-        Component result = componentSorter.sortBy(NOT_DIFFERENT_CHAR_NUMBER_SENTENCE, ComponentEnum.SENTENCE);
+        Component result = sorter.sortBy(NOT_DIFFERENT_CHAR_NUMBER_SENTENCE,
+                new SymbolNumberDescWordComparator(SORTING_SYMBOL));
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(4));
@@ -70,10 +88,9 @@ public class ComponentSorterIT {
 
     @Test
     public void shouldNotSortWordsBySymbolNumberDescWhenGivenNull() {
-        //given
-        ComponentSorter componentSorter = new ComponentSorter(new SymbolNumberDescWordComparator(SORTING_SYMBOL));
+
         //when
-        Component result = componentSorter.sortBy(null, ComponentEnum.SENTENCE);
+        Component result = sorter.sortBy(null, new SymbolNumberDescWordComparator(SORTING_SYMBOL));
         //then
         List<Component> children = result.getChildren();
         Assert.assertTrue(children.isEmpty());
@@ -81,10 +98,10 @@ public class ComponentSorterIT {
 
     @Test
     public void shouldNotSortWordsBySymbolNumberDescWhenSymbolIsAbsent() {
-        //given
-        ComponentSorter componentSorter = new ComponentSorter(new SymbolNumberDescWordComparator(SORTING_SYMBOL));
+
         //when
-        Component result = componentSorter.sortBy(WITHOUT_SORTING_SYMBOL_SENTENCE, ComponentEnum.SENTENCE);
+        Component result = sorter.sortBy(WITHOUT_SORTING_SYMBOL_SENTENCE,
+                new SymbolNumberDescWordComparator(SORTING_SYMBOL));
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(2));
@@ -94,10 +111,9 @@ public class ComponentSorterIT {
 
     @Test
     public void shouldSortWordsByLengthWhenGivenSentence() {
-        //given
-        ComponentSorter componentSorter = new ComponentSorter(new WordLengthComparator());
+
         //when
-        Component result = componentSorter.sortBy(DIFFERENT_CHAR_NUMBER_SENTENCE, ComponentEnum.SENTENCE);
+        Component result = sorter.sortBy(DIFFERENT_CHAR_NUMBER_SENTENCE, new WordLengthComparator());
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(3));
@@ -108,10 +124,9 @@ public class ComponentSorterIT {
 
     @Test
     public void shouldSortParagraphsBySentencesNumberWhenGivenText() {
-        //given
-        ComponentSorter componentSorter = new ComponentSorter(new SentencesNumberParagraphComparator());
+
         //when
-        Component result = componentSorter.sortBy(TEXT, ComponentEnum.TEXT);
+        Component result = sorter.sortBy(TEXT, new SentencesNumberParagraphComparator());
         //then
         List<Component> children = result.getChildren();
         Assert.assertThat(children.size(), is(3));

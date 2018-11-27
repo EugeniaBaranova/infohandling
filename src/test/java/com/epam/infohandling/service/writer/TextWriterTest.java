@@ -1,7 +1,7 @@
 package com.epam.infohandling.service.writer;
 
-import com.epam.infohandling.entity.composite.Component;
-import com.epam.infohandling.entity.composite.Word;
+import com.epam.infohandling.entity.Component;
+import com.epam.infohandling.entity.Word;
 import com.epam.infohandling.service.writer.exeption.WriterException;
 import org.junit.Assert;
 import org.junit.Test;

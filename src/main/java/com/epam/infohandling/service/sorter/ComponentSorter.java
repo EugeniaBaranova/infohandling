@@ -1,41 +1,33 @@
 package com.epam.infohandling.service.sorter;
 
-import com.epam.infohandling.entity.composite.*;
+import com.epam.infohandling.entity.*;
 import com.epam.infohandling.service.sorter.comparator.ComponentComparator;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ComponentSorter {
+public class ComponentSorter implements Sorter<Component> {
 
-    private ComponentComparator componentComparator;
+    @Override
+    public Component sortBy(Component component, Comparator<Component> comparator) {
 
-    public ComponentSorter(ComponentComparator componentComparator) {
-        this.componentComparator = componentComparator;
-    }
+        if (component != null) {
+            List<Component> children = component.getChildren();
+            List<Component> sortedChildren = children.stream()
+                    .sorted(comparator)
+                    .collect(Collectors.toList());
 
-    public Component sortBy (Component component, ComponentEnum componentName) {
+            ComponentEnum type = component.getType();
 
-        if (component!=null && componentName!= null) {
-
-            if(componentName.equals(component.getType())){
-                List<Component> children = component.getChildren();
-
-                List<Component> sortedChildren = children.stream()
-                        .sorted(componentComparator
-                                .compare())
-                        .collect(Collectors.toList());
-
-                switch(componentName){
-                    case SENTENCE:
-                        return new Sentences(sortedChildren);
-                    case PARAGRAPH:
-                        return new Paragraph(sortedChildren);
-                    case TEXT:
-                        return new Text(sortedChildren);
-                }
+            switch (type) {
+                case SENTENCE:
+                    return new Sentences(sortedChildren);
+                case PARAGRAPH:
+                    return new Paragraph(sortedChildren);
+                case TEXT:
+                    return new Text(sortedChildren);
             }
         }
         return new Text(Collections.emptyList());

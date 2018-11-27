@@ -1,7 +1,7 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.entity.composite.Component;
-import com.epam.infohandling.entity.composite.Paragraph;
+import com.epam.infohandling.entity.Component;
+import com.epam.infohandling.entity.Paragraph;
 
 import java.util.*;
 

@@ -1,10 +1,9 @@
 package com.epam.infohandling.parser;
 
-import com.epam.infohandling.entity.composite.Component;
-import com.epam.infohandling.entity.composite.Sentences;
-import com.epam.infohandling.entity.composite.Word;
+import com.epam.infohandling.entity.Component;
+import com.epam.infohandling.entity.Sentences;
+import com.epam.infohandling.entity.Word;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

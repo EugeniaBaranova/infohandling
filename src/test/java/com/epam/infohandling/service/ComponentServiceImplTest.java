@@ -1,6 +1,6 @@
 package com.epam.infohandling.service;
 
-import com.epam.infohandling.entity.composite.*;
+import com.epam.infohandling.entity.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 
-public class ComponentServiceTest {
+public class ComponentServiceImplTest {
 
     private static final String FIRST_WORD = "Hello";
     private static final String SECOND_WORD = "world.";
 
-    private ComponentService componentService = new ComponentService();
+    private ComponentService componentServiceImpl = new ComponentServiceImpl();
 
     private Component firstWord;
     private Component secondWord;
@@ -39,7 +39,7 @@ public class ComponentServiceTest {
     @Test
     public void shouldGetParagraphsWhenGivenText(){
         //when
-        List<Component> result = componentService.getParagraph(text);
+        List<Component> result = componentServiceImpl.getParagraph(text);
         //then
         Assert.assertThat(result.size(), is(2));
 
@@ -52,7 +52,7 @@ public class ComponentServiceTest {
     @Test
     public void shouldNotGetParagraphsAndGetEmptyListWhenGivenNull(){
         //when
-        List<Component> result = componentService.getParagraph(null);
+        List<Component> result = componentServiceImpl.getParagraph(null);
         //then
         Assert.assertTrue(result.isEmpty());
     }
@@ -60,7 +60,7 @@ public class ComponentServiceTest {
     @Test
     public void shouldGetSentencesWhenGivenText(){
         //when
-        List<Component> result = componentService.getSentences(text);
+        List<Component> result = componentServiceImpl.getSentences(text);
         //then
         Assert.assertThat(result.size(), is(4));
 
@@ -77,7 +77,7 @@ public class ComponentServiceTest {
     @Test
     public void shouldNotGetSentencesAndGetEmptyListWhenGivenNull(){
         //when
-        List<Component> result = componentService.getSentences(null);
+        List<Component> result = componentServiceImpl.getSentences(null);
         //then
         Assert.assertTrue(result.isEmpty());
     }
@@ -85,7 +85,7 @@ public class ComponentServiceTest {
     @Test
     public void shouldGetWordsWhenGivenText(){
         //when
-        List<Component> result = componentService.getWords(text);
+        List<Component> result = componentServiceImpl.getWords(text);
         //then
         Assert.assertThat(result.size(), is(8));
 
@@ -110,7 +110,7 @@ public class ComponentServiceTest {
     @Test
     public void shouldNotGetWordsAndGetEmptyListWhenGivenNull(){
         //when
-        List<Component> result = componentService.getWords(null);
+        List<Component> result = componentServiceImpl.getWords(null);
         //then
         Assert.assertTrue(result.isEmpty());
     }
