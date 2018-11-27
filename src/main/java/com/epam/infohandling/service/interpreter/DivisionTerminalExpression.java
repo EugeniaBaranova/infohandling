@@ -1,6 +1,6 @@
 package com.epam.infohandling.service.interpreter;
 
-public class DevisionTerminalExpression implements AbstractExpression{
+public class DivisionTerminalExpression implements AbstractExpression{
 
     @Override
     public void interpret(Context context) {

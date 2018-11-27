@@ -31,6 +31,11 @@ public class Text implements Component {
     }
 
     @Override
+    public void addChildren(Component component) {
+        components.add(component);
+    }
+
+    @Override
     public String getValue() {
         return null;
     }

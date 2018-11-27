@@ -32,6 +32,11 @@ public class Word implements Component {
     }
 
     @Override
+    public void addChildren(Component component) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public String getValue() {
         return value;
     }

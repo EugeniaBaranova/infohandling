@@ -17,13 +17,13 @@ public class ComponentServiceTest {
 
     private ComponentService componentService = new ComponentService();
 
-    private Word firstWord;
-    private Word secondWord;
-    private Sentences firstSentence;
-    private Sentences secondSentence;
-    private Paragraph firstParagraph;
-    private Paragraph secondParagraph;
-    private Text text;
+    private Component firstWord;
+    private Component secondWord;
+    private Component firstSentence;
+    private Component secondSentence;
+    private Component firstParagraph;
+    private Component secondParagraph;
+    private Component text;
 
     @Before
     public void setUp(){

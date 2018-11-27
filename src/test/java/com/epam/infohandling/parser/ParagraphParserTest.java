@@ -46,7 +46,17 @@ public class ParagraphParserTest {
         }
 
 
+        String s = "([2][23][3]*-)";
+        String EXPRESSION_REGEX = "\\((\\[\\d+])+((\\*)|(/)|(\\+)|(-))+\\)";
+        System.out.println(s.matches(EXPRESSION_REGEX));
+        int length = s.length();
+        String substring1 = s.substring(1, length - 1);
+        String[] splitS1 = substring1.split("\\[");
+        for (String s1 : splitS1) {
+            String[] split = s1.split("]");
+            System.out.println(split[0]);
 
+        }
 
     }
 
